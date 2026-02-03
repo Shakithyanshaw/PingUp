@@ -3,6 +3,7 @@ import Sidebar from '../components/Sidebar';
 import { Outlet } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { dummyUserData } from '../assets/assets';
+import Loading from '../components/Loading';
 
 const Layout = () => {
   const user = dummyUserData;
@@ -27,7 +28,7 @@ const Layout = () => {
       )}
     </div>
   ) : (
-    <h1>Loading...</h1>
+    <Loading />
   );
 };
 
