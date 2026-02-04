@@ -5,6 +5,7 @@ import moment from 'moment';
 import StoryModal from '../components/StoryModal';
 
 const StoriesBar = () => {
+  //fix
   const [stories, setStories] = useState([]);
 
   const [showModal, setShowModal] = useState(false);
