@@ -15,7 +15,7 @@ const StoryModal = ({ setShowModal, fetchStories }) => {
   const [background, setBackground] = useState(bgColors[0]);
   const [text, setText] = useState('');
   const [media, setMedia] = useState(null);
-  const [previewurl, setPreviewUrl] = useState(null);
+  const [previewUrl, setPreviewUrl] = useState(null);
 
   const handleMediaUpload = (e) => {
     const file = e.target.files?.[0];
@@ -39,6 +39,41 @@ const StoryModal = ({ setShowModal, fetchStories }) => {
           </button>
           <h2 className="text-lg font-semibold">Create Story</h2>
           <span className="w-10"></span>
+        </div>
+        <div
+          className="rounded-lg h-96 flex items-center justify-center relative"
+          style={{ backgroundColor: background }}
+        >
+          {mode === 'text' && (
+            <textarea
+              className="bg-transparent text-white w-full h-full p-6 text-lg resize-none focus:outline-none"
+              placeholder="What's on Your Mind?"
+              onChange={(e) => setText(e.target.value)}
+              value={text}
+            />
+          )}
+          {mode === 'media' &&
+            previewUrl &&
+            (media?.type.startsWith('image') ? (
+              <img
+                src={previewUrl}
+                alt=""
+                className="object-contain max-h-full"
+              />
+            ) : (
+              <video src={previewUrl} className="object-contain max-w-full" />
+            ))}
+        </div>
+
+        <div className="flex mt-4 gap-2">
+          {bgColors.map((color) => (
+            <button
+              key={color}
+              className="w-6 h-6 rounded-full ring cursor-pointer"
+              style={{ backgroundColor: color }}
+              onClick={() => setBackground(color)}
+            />
+          ))}
         </div>
       </div>
     </div>
