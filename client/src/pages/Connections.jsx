@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Users,
   UserPlus,
@@ -16,7 +16,9 @@ import {
 } from '../assets/assets';
 
 const Connections = () => {
+  const [currentTab, setCurrentTab] = useState('Followers');
   const navigate = useNavigate();
+
   const dataArray = [
     { lable: 'Followers', value: followers, icon: Users },
     { lable: 'Following', value: following, icon: UserCheck },
@@ -46,6 +48,25 @@ const Connections = () => {
               <b>{item.value.length}</b>
               <p className="text-slate-600">{item.lable}</p>
             </div>
+          ))}
+        </div>
+
+        {/*Tabs*/}
+        <div className="inline-flex flex-wrap items-center border border-gray-200 rounded-md p-1 bg-white shadow-md">
+          {dataArray.map((tab) => (
+            <button
+              onClick={() => setCurrentTab(tab.lable)}
+              key={tab.lable}
+              className={`cursor-pointer flex items-center px-3 py-1 text-sm rounded-md transition-colors ${currentTab === tab.lable ? 'bg-white font-medium text-black' : 'text-gray-500 hover:text-black'}`}
+            >
+              <tab.icon className="w-4 h-4" />
+              <span className="ml-1">{tab.lable}</span>
+              {tab.count !== undefined && (
+                <span className="ml-2 text-xs bg-gray-100 text-gray-700 px-2 py-0.5 rounded-full">
+                  {tab.count}
+                </span>
+              )}
+            </button>
           ))}
         </div>
       </div>
