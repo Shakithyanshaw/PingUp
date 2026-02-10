@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { dummyUserData } from '../assets/assets';
+import { X } from 'lucide-react';
 
 const CreatePost = () => {
   const [content, setContent] = useState('');
@@ -34,6 +35,38 @@ const CreatePost = () => {
             </div>
           </div>
           {/*Text Area*/}
+          <textarea
+            className="w-full resize-none max-h-20 mt-4 text-sm outline-none placeholder-gray-400"
+            placeholder="what's happening?"
+            onChange={(e) => setContent(e.target.value)}
+            value={content}
+          />
+
+          {/*Images*/}
+
+          {images.length > 0 && (
+            <div className="flex flex-wrap gap-2 mt-4">
+              {images.map((image, i) => (
+                <div key={i} className="relative group">
+                  <img
+                    src={URL.createObjectURL(image)}
+                    className="h-20 rounded-md"
+                    alt=""
+                  />
+                  <div
+                    onClick={() =>
+                      setImages(images.filter((_, index) => index !== i))
+                    }
+                    className="absolute hidden group-hover:flex justify-center items-center top-0 right-0 bottom-0 left-0 bg-black/40 rounded-md cursor-pointer"
+                  >
+                    <X className="W-6 H-6 TEXT-W`" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/*Bottom Bar*/}
         </div>
       </div>
     </div>
