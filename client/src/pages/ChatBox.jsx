@@ -12,7 +12,7 @@ const ChatBox = () => {
   const sentMessage = async () => {};
 
   useEffect(() => {
-    messageEndRef.current?.scrollIntoview({ behavior: 'smooth' });
+    messageEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
   return (
@@ -27,6 +27,33 @@ const ChatBox = () => {
           <div>
             <p className="font-medium">{user.full_name}</p>
             <p className="text-sm text-gray-500 -mt-1.5">@{user.username}</p>
+          </div>
+        </div>
+
+        <div className="p-5 md:px-10 h-full overflow-y-scroll">
+          <div className="space-y-4 max-w-4xl mx-auto">
+            {messages
+              .toSorted((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
+              .map((message, index) => (
+                <div
+                  key={index}
+                  className={`flex flex-col ${message.to_user_id !== user._id ? 'items-start' : 'items-end'}`}
+                >
+                  <div
+                    className={`p-2 text-sm max-w-sm bg-white text-slate-700 rounded-lg shadow ${message.to_user_id !== user._id ? 'rounded-bl-none' : 'rounded-br-none'}`}
+                  >
+                    {message.message_type === 'image' && (
+                      <img
+                        src={message.media_url}
+                        className="w-full max-w-sm rounded-lg mb-1"
+                        alt=""
+                      />
+                    )}
+                    <p>{message.text}</p>
+                  </div>
+                </div>
+              ))}
+            <div ref={messageEndRef} />
           </div>
         </div>
       </div>
