@@ -99,6 +99,64 @@ const ProfileModal = () => {
                 </div>
               </label>
             </div>
+
+            {/*user name and Bio*/}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Name
+              </label>
+              <input
+                type="text"
+                className="w-full p-3 border border-gray-200 rounded-lg"
+                placeholder="Please enter your full name"
+                onChange={(e) =>
+                  setEditForm({ ...editForm, full_name: e.target.value })
+                }
+                value={editForm.full_name}
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                User Name
+              </label>
+              <input
+                type="text"
+                className="w-full p-3 border border-gray-200 rounded-lg"
+                placeholder="Please enter username"
+                onChange={(e) =>
+                  setEditForm({ ...editForm, username: e.target.value })
+                }
+                value={editForm.username}
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Bio
+              </label>
+              <textarea
+                rows={3}
+                className="w-full p-3 border border-gray-200 rounded-lg"
+                placeholder="Please enter s short bio"
+                onChange={(e) =>
+                  setEditForm({ ...editForm, bio: e.target.value })
+                }
+                value={editForm.bio}
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Location
+              </label>
+              <input
+                type="text"
+                className="w-full p-3 border border-gray-200 rounded-lg"
+                placeholder="Please enter your locaton"
+                onChange={(e) =>
+                  setEditForm({ ...editForm, location: e.target.value })
+                }
+                value={editForm.location}
+              />
+            </div>
           </form>
         </div>
       </div>
