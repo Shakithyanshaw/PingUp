@@ -7,7 +7,7 @@ import { serve } from 'inngest/express';
 
 const app = express();
 
-//
+//fix errors
 
 await connectDB();
 
