@@ -39,6 +39,9 @@ export const updateUserData = async (req, res) => {
       location,
       full_name,
     };
+
+    const profile = req.files.profile && req.files.profile[0];
+    const cover = req.files.cover && req.files.cover[0];
   } catch (error) {
     console.log(error);
     res.json({ success: false, message: error.message });
