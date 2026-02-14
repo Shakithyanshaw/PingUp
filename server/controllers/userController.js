@@ -91,3 +91,26 @@ export const updateUserData = async (req, res) => {
     res.json({ success: false, message: error.message });
   }
 };
+
+// Find User Using Username, email, location, name
+export const discoverUsers = async (req, res) => {
+  try {
+    const { userId } = req.auth();
+    const { input } = req.body;
+
+    const allUser = await User.find({
+      $or: [
+        { username: new RegExp(input, 'i') },
+        { email: new RegExp(input, 'i') },
+        { full_name: new RegExp(input, 'i') },
+        { location: new RegExp(input, 'i') },
+      ],
+    });
+    const filterUsers = allUser.filter((user) => user._id !== userId);
+
+    res.json({ success: true, users: filterUsers });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: error.message });
+  }
+};
