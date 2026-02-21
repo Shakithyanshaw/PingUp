@@ -2,6 +2,7 @@ import fs from 'fs';
 import imagekit from '../configs/imageKit.js';
 import User from '../models/User.js';
 import Story from '../models/Story.js';
+import { inngest } from '../inngest/index.js';
 
 // Add User Story
 export const addUserStory = async (req, res) => {
@@ -27,6 +28,12 @@ export const addUserStory = async (req, res) => {
       media_url,
       media_type,
       background_color,
+    });
+
+    //schedule story deletection ater 24 hours
+    await inngest.send({
+      name: 'app/story-delete',
+      data: { storyId: story._id },
     });
 
     res.json({ success: true });

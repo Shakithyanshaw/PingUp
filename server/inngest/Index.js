@@ -149,7 +149,8 @@ const deleteStory = inngest.createFunction(
     const in24Hours = new (Date.now() + 24 * 60 * 60 * 1000)();
     await step.sleepUntil('wait-f04-24-hours', in24Hours);
     await step.run('delete-story', async () => {
-      await Story;
+      await Story.findByIdAndDelete(storyId);
+      return { message: 'Story deleted' };
     });
   },
 );
@@ -160,4 +161,5 @@ export const functions = [
   syncUserUpdation,
   syncUserDeletion,
   sendNewConnectionRequestReminder,
+  deleteStory,
 ];
