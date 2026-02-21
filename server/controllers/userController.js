@@ -1,4 +1,5 @@
 import imagekit from '../configs/imageKit.js';
+import { inngest } from '../inngest/index.js';
 import Connection from '../models/Connections.js';
 import Post from '../models/post.js';
 import User from '../models/User.js';
@@ -199,9 +200,14 @@ export const sentConnectionRequest = async (req, res) => {
     });
 
     if (!connection) {
-      await Connection.create({
+      const newConnection = await Connection.create({
         from_user_id: userId,
         to_user_id: id,
+      });
+
+      await inngest.send({
+        name: 'app/connection-request',
+        data: { connectionId: newConnection._id },
       });
       return res.json({
         success: true,
