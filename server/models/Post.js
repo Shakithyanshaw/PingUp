@@ -15,6 +15,7 @@ const postSchema = new mongoose.Schema(
   { timestamps: true, minimize: false },
 );
 
-const Post = mongoose.model('Post', postSchema);
+// ✅ Fix for OverwriteModelError
+const Post = mongoose.models.Post || mongoose.model('Post', postSchema);
 
 export default Post;
