@@ -31,7 +31,7 @@ const ChatBox = () => {
     }
   };
 
-  const sentMessage = async () => {
+  const sendMessage = async () => {
     try {
       if (!text && !image) return;
       const token = await getToken();
@@ -121,7 +121,7 @@ const ChatBox = () => {
               type="text"
               className="flex-1 outline-none text-slate-700"
               placeholder="Type a message..."
-              onKeyDown={(e) => e.key === 'Enter' && sentMessage()}
+              onKeyDown={(e) => e.key === 'Enter' && sendMessage()}
               onChange={(e) => setText(e.target.value)}
               value={text}
             />
@@ -145,7 +145,7 @@ const ChatBox = () => {
               />
             </label>
             <button
-              onClick={sentMessage}
+              onClick={sendMessage}
               className="bg-linear-to-br from-indigo-500 to-purple-600 hover:from-indigo-700 hover:to-purple-800 active:scale-95 cursor-pointer text-white p-2 rounded-full"
             >
               <SendHorizontal size={18} />
