@@ -23,16 +23,36 @@ const UserCard = ({ user }) => {
         },
       );
       if (data.success) {
-        toast.success(data.mesage);
+        toast.success(data.message);
         disPatch(fetchUser(await getToken()));
       } else {
-        toast.error(data.mesage);
+        toast.error(data.message);
       }
     } catch (error) {
-      toast.error(error.mesage);
+      toast.error(error.message);
     }
   };
-  const handelConnectionRequest = async () => {};
+  const handelConnectionRequest = async () => {
+    if (currentUser.connections.includes(user._id)) {
+      return navigate('/messages/' + user._id);
+    }
+    try {
+      const { data } = await api.post(
+        '/api/user/connect',
+        { id: user._id },
+        {
+          headers: { Authorization: `Bearer ${await getToken()}` },
+        },
+      );
+      if (data.success) {
+        toast.success(data.message);
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
 
   return (
     <div

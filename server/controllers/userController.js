@@ -154,11 +154,11 @@ export const unfollowUser = async (req, res) => {
     const { id } = req.body;
 
     const user = await User.findById(userId);
-    user.following = user.following.filter(user !== id);
+    user.following = user.following.filter((user) => user !== id);
     await user.save();
 
     const toUser = await User.findById(id);
-    toUser.followers = toUser.followers.filter(user !== userId);
+    toUser.followers = toUser.followers.filter((user) => user !== userId);
     await toUser.save();
 
     res.json({
@@ -262,7 +262,7 @@ export const getUserConnections = async (req, res) => {
 export const acceptConnectionRequest = async (req, res) => {
   try {
     const { userId } = req.auth();
-    const { id } = res.body;
+    const { id } = req.body;
 
     const connection = await Connection.findOne({
       from_user_id: id,
