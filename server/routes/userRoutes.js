@@ -12,7 +12,7 @@ import {
   updateUserData,
 } from '../controllers/userController.js';
 import { upload } from '../configs/multer.js';
-import { getUserRecentMessage } from '../controllers/messageController.js';
+import { getUserRecentMessages } from '../controllers/messageController.js';
 
 const userRouter = express.Router();
 
@@ -33,6 +33,6 @@ userRouter.post('/connect', protect, sentConnectionRequest);
 userRouter.post('/accept', protect, acceptConnectionRequest);
 userRouter.get('/connections', protect, getUserConnections);
 userRouter.post('/profiles', protect, getUserProfiles);
-userRouter.get('/recent-messages', protect, getUserRecentMessage);
+userRouter.get('/recent-messages', protect, getUserRecentMessages);
 
 export default userRouter;

@@ -1,6 +1,6 @@
 import express from 'express';
 import {
-  getChatMessage,
+  getChatMessages,
   sendMessage,
   sseController,
 } from '../controllers/messageController.js';
@@ -11,6 +11,6 @@ const messageRouter = express.Router();
 
 messageRouter.get('/:userId', sseController);
 messageRouter.post('/send', upload.single('image'), protect, sendMessage);
-messageRouter.post('/get', protect, getChatMessage);
+messageRouter.post('/get', protect, getChatMessages);
 
 export default messageRouter;
