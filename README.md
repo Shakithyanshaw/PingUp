@@ -7,6 +7,11 @@ This project focuses on real-world social media features such as posts, messagin
 
 ---
 
+## 🚀 Live Demo
+[https://prescripto.vercel.app/](https://ping-up-opal-five.vercel.app/)
+
+---
+
 ## 🚀 Project Overview
 
 This application allows users to connect, communicate, and share content in real time.  
