@@ -3,7 +3,12 @@
 A **full-stack social media web application** built using the **MERN Stack (MongoDB, Express.js, React.js, Node.js)**.  
 This project focuses on real-world social media features such as posts, messaging, user connections, and media sharing, along with modern tools for authentication, background jobs, and image optimization.
 
-🚧 **Status:** In Development
+🚧 **Status:** Finished
+
+---
+
+## 🚀 Live Demo
+[https://prescripto.vercel.app/](https://ping-up-opal-five.vercel.app/)
 
 ---
 
